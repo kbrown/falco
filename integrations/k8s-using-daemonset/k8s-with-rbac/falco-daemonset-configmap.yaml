@@ -22,9 +22,11 @@ spec:
 # This allows Falco to run on Google COS.
 # Leave blank for the default probe location, or set to the path
 # of a precompiled probe.
-#          env:
-#          - name: SYSDIG_BPF_PROBE
-#            value: ""
+          env:
+          - name: SYSDIG_BPF_PROBE
+            value: ""
+          - name: KBUILD_EXTRA_CPPFLAGS
+            value: -DCOS_73_WORKAROUND
           args: [ "/usr/bin/falco", "--cri", "/host/run/containerd/containerd.sock", "-K", "/var/run/secrets/kubernetes.io/serviceaccount/token", "-k", "https://$(KUBERNETES_SERVICE_HOST)", "-pk"]
           volumeMounts:
             - mountPath: /host/var/run/docker.sock
