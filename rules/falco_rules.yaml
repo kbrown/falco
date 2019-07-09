@@ -1796,16 +1796,16 @@
 - macro: user_sensitive_mount_containers
   condition: (container.image.repository = docker.io/sysdig/agent)
 
-- rule: Launch Privileged Container
-  desc: Detect the initial process started in a privileged container. Exceptions are made for known trusted images.
-  condition: >
-    container_started and container
-    and container.privileged=true
-    and not falco_privileged_containers
-    and not user_privileged_containers
-  output: Privileged container started (user=%user.name command=%proc.cmdline %container.info image=%container.image.repository:%container.image.tag)
-  priority: INFO
-  tags: [container, cis, mitre_privilege_escalation, mitre_lateral_movement]
+#- rule: Launch Privileged Container
+#  desc: Detect the initial process started in a privileged container. Exceptions are made for known trusted images.
+#  condition: >
+#    container_started and container
+#    and container.privileged=true
+#    and not falco_privileged_containers
+#    and not user_privileged_containers
+#  output: Privileged container started (user=%user.name command=%proc.cmdline %container.info image=%container.image.repository:%container.image.tag)
+#  priority: INFO
+#  tags: [container, cis, mitre_privilege_escalation, mitre_lateral_movement]
 
 # For now, only considering a full mount of /etc as
 # sensitive. Ideally, this would also consider all subdirectories
